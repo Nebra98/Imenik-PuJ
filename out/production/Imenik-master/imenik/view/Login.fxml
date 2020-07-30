@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="350.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="imenik.controller.LoginController">
+   <children>
+      <AnchorPane prefHeight="350.0" prefWidth="200.0" style="-fx-background-color: blue;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="300.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Label layoutX="71.0" layoutY="145.0" text="Imenik" textFill="WHITE">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <Label layoutX="22.0" layoutY="191.0" text="Upravljajte svojim kontaktima" textFill="WHITE" />
+         </children></AnchorPane>
+      <Pane layoutX="226.0" layoutY="42.0" prefHeight="282.0" prefWidth="250.0">
+         <children>
+            <TextField fx:id="uemailTxt" layoutX="5.0" layoutY="25.0" prefHeight="31.0" prefWidth="240.0" promptText="unesite email">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </TextField>
+            <PasswordField fx:id="upasswordTxt" layoutX="5.0" layoutY="85.0" prefHeight="31.0" prefWidth="240.0" promptText="unesite lozinku">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </PasswordField>
+            <Button fx:id="prijaviseBtn" layoutX="81.0" layoutY="126.0" mnemonicParsing="false" onAction="#prijavise" prefHeight="31.0" prefWidth="89.0" text="Prijavi se" />
+            <Separator layoutX="25.0" layoutY="197.0" prefWidth="200.0" />
+            <Label layoutX="85.0" layoutY="190.0" style="-fx-background-color: #FFF;" text="Nemate račun?" />
+            <Button fx:id="registrirajseRBtn" layoutX="26.0" layoutY="226.0" mnemonicParsing="false" onAction="#redirectRegistracija" prefHeight="31.0" prefWidth="200.0" text="Registriraj se" />
+            <Label id="statusLbl" fx:id="statusLbl" alignment="CENTER" contentDisplay="CENTER" layoutX="8.0" layoutY="169.0" prefHeight="17.0" prefWidth="230.0" />
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>
