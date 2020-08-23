@@ -5,12 +5,16 @@
 ###### Kratke upute:
 
 1. 
-    - instaliran lokalni server npr. xampp
+    - potrebno je instalirati lokalni server npr. xampp
     - instaliran phpadminpanel (mysql)
     
 2. Pokrenuti komandu: git clone https://github.com/Nebra98/Imenik-PuJ.git , ili Download ZIP
     
-6. Napraviti novu bazu podataka u phpmyadmin (npr. ime: puj3), te je potrebno napraviti import file-a puj3.sql koji se nalazi u samom projektu
+3. Pokrenuti lokalni server: Modeule Apache, Module MySQL, te preko web preglednika otvoriti http://localhost/phpmyadmin/
+    
+4. Napraviti novu bazu podataka u phpmyadmin (npr. ime: puj3), te je potrebno napraviti import file-a puj3.sql koji se nalazi u samom projektu
+
+5. U Vašem razvojnom okruženju je potrebno importati projekt (morate imati instalirane module za JavaFX framework)
 
 7. U \src\imenik\model\Konekcija.java podesiti konstruktor za spajanje s bazom podataka: 
    ```
