@@ -68,8 +68,9 @@ public class LoginController implements Initializable {
                         ContactsController contactsController = loader.getController();
                         contactsController.setUserLbl(uime + " " + uprezime);
                         Stage stage = new Stage();
-                        stage.setTitle("Pregled vašik kontakata");
-                        stage.setScene(new Scene(root, 600, 400));
+                        stage.setTitle("Pregled vaših kontakata");
+                        stage.setScene(new Scene(root, 881, 405));
+                        stage.setResizable(false);
                         stage.show();
                         prijaviseBtn.getScene().getWindow().hide();
                         
@@ -86,7 +87,7 @@ public class LoginController implements Initializable {
 
             }else {
                 statusLbl.setTextFill(Color.RED);
-                statusLbl.setText("Korisnicki podatci nisu ispravni!");
+                statusLbl.setText("Korisnički podatci nisu ispravni!");
             }
         }
     }
@@ -98,6 +99,7 @@ public class LoginController implements Initializable {
             Stage stage = new Stage();
             stage.setTitle("Registriraj se");
             stage.setScene(new Scene(root, 500, 500));
+            stage.setResizable(false);
             stage.show();
             statusLbl.getScene().getWindow().hide();
 
@@ -109,8 +111,6 @@ public class LoginController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        // uklanja focus na input elementima
-        uemailTxt.setFocusTraversable(false);
-        upasswordTxt.setFocusTraversable(false);
+     
     }
 }

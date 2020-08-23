@@ -18,26 +18,29 @@
                   <Font size="20.0" />
                </font>
             </Label>
-            <Label layoutX="22.0" layoutY="191.0" text="Upravljajte svojim kontaktima" textFill="WHITE" />
+            <Label layoutX="22.0" layoutY="191.0" text="Upravljajte vašim kontaktima" textFill="WHITE" />
          </children></AnchorPane>
-      <Pane layoutX="226.0" layoutY="42.0" prefHeight="282.0" prefWidth="250.0">
+      <Pane layoutX="242.0" layoutY="42.0" prefHeight="282.0" prefWidth="234.0">
          <children>
-            <TextField fx:id="uemailTxt" layoutX="5.0" layoutY="25.0" prefHeight="31.0" prefWidth="240.0" promptText="unesite email">
+            <TextField fx:id="uemailTxt" layoutX="15.0" layoutY="25.0" prefHeight="31.0" prefWidth="230.0" promptText="unesite email">
                <font>
                   <Font size="15.0" />
                </font>
             </TextField>
-            <PasswordField fx:id="upasswordTxt" layoutX="5.0" layoutY="85.0" prefHeight="31.0" prefWidth="240.0" promptText="unesite lozinku">
+            <PasswordField fx:id="upasswordTxt" layoutX="15.0" layoutY="85.0" prefHeight="31.0" prefWidth="230.0" promptText="unesite lozinku">
                <font>
                   <Font size="15.0" />
                </font>
             </PasswordField>
-            <Button fx:id="prijaviseBtn" layoutX="81.0" layoutY="126.0" mnemonicParsing="false" onAction="#prijavise" prefHeight="31.0" prefWidth="89.0" text="Prijavi se" />
+            <Button fx:id="prijaviseBtn" layoutX="73.0" layoutY="126.0" mnemonicParsing="false" onAction="#prijavise" prefHeight="31.0" prefWidth="89.0" text="Prijavi se" />
             <Separator layoutX="25.0" layoutY="197.0" prefWidth="200.0" />
             <Label layoutX="85.0" layoutY="190.0" style="-fx-background-color: #FFF;" text="Nemate račun?" />
             <Button fx:id="registrirajseRBtn" layoutX="26.0" layoutY="226.0" mnemonicParsing="false" onAction="#redirectRegistracija" prefHeight="31.0" prefWidth="200.0" text="Registriraj se" />
             <Label id="statusLbl" fx:id="statusLbl" alignment="CENTER" contentDisplay="CENTER" layoutX="8.0" layoutY="169.0" prefHeight="17.0" prefWidth="230.0" />
          </children>
       </Pane>
+      <Label layoutX="211.0" layoutY="72.0" text="Email" />
+      <Label layoutX="211.0" layoutY="133.0" text="Lozinka" />
+      <Label layoutX="331.0" layoutY="25.0" text="Prijava" />
    </children>
 </AnchorPane>

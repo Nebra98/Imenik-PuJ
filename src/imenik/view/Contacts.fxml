@@ -35,13 +35,13 @@
             <Button fx:id="odjavaBtn" layoutX="152.0" layoutY="364.0" mnemonicParsing="false" onAction="#odjaviSe" text="Odjavi se" />
          </children>
       </AnchorPane>
-      <TableView fx:id="kontaktiTbl" layoutX="227.0" layoutY="-1.0" onMouseClicked="#odaberiKorisnika" prefHeight="406.0" prefWidth="373.0">
+      <TableView fx:id="kontaktiTbl" layoutX="227.0" layoutY="-1.0" onMouseClicked="#odaberiKorisnika" prefHeight="406.0" prefWidth="654.0">
         <columns>
-          <TableColumn fx:id="imeTblCol" prefWidth="75.0" text="Ime" />
-          <TableColumn fx:id="prezimeTblCol" prefWidth="75.0" text="Prezime" />
-            <TableColumn fx:id="emailTblCol" prefWidth="75.0" text="Email" />
-            <TableColumn fx:id="adresaTblCol" prefWidth="75.0" text="Adresa" />
-            <TableColumn fx:id="telefonTblCol" prefWidth="75.0" text="Telefon" />
+          <TableColumn fx:id="imeTblCol" prefWidth="130.0" text="Ime" />
+          <TableColumn fx:id="prezimeTblCol" prefWidth="130.0" text="Prezime" />
+            <TableColumn fx:id="emailTblCol" prefWidth="130.0" text="Email" />
+            <TableColumn fx:id="adresaTblCol" prefWidth="130.0" text="Adresa" />
+            <TableColumn fx:id="telefonTblCol" prefWidth="130.0" text="Telefon" />
         </columns>
       </TableView>
    </children>

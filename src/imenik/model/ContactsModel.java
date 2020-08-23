@@ -93,6 +93,7 @@ public class ContactsModel {
             upit.setString(5,this.getC_email());
             upit.setString(6,this.getC_adresa());
             upit.executeUpdate();
+            
 
         } catch (SQLException ex) {
             System.out.println("Greška prilikom unosa novnog kontakta u bazu: " + ex.getMessage());

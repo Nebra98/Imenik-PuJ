@@ -37,6 +37,8 @@ public class SignUpController implements Initializable {
     @FXML
     TextField utelefonTxt;
 
+    @FXML
+    Button registrirajseBtn;
 
     @FXML
     public void redirectPrijava(){
@@ -46,6 +48,7 @@ public class SignUpController implements Initializable {
             Stage stage = new Stage();
             stage.setTitle("Prijavi se");
             stage.setScene(new Scene(root, 500, 350));
+            stage.setResizable(false);
             stage.show();
             statusLbl.getScene().getWindow().hide();
 
@@ -63,9 +66,9 @@ public class SignUpController implements Initializable {
         String upassword = this.upasswordTxt.getText();
         String utelefon = this.utelefonTxt.getText();
 
-        if(uime.equals("") || uprezime.equals("") || upassword.equals("") || utelefon.equals("")){
+        if(uime.equals("") || uprezime.equals("") || upassword.equals("")){
             statusLbl.setTextFill(Color.RED);
-            statusLbl.setText("Polja ne smiju biti prazna!");
+            statusLbl.setText("Polja sa * ne smiju biti prazna!");
         }
         else if(upassword.length() < 8){
             statusLbl.setTextFill(Color.RED);
@@ -75,19 +78,18 @@ public class SignUpController implements Initializable {
             UsersModel noviUser = new UsersModel(0, uime, uprezime, uemail, upassword, utelefon);
             noviUser.spasi();
             statusLbl.setTextFill(Color.GREEN);
-            statusLbl.setText("Uspješno ste se registrirali.");
+            statusLbl.setText("Uspješno ste se registrirali. Izvršite prijavu");
         }
-
+        
     }
 
-    
+    public void setStatusLbl(String statusLbl) {
+        this.statusLbl.setText(statusLbl);
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        uimeTxt.setFocusTraversable(false);
-        uprezimeTxt.setFocusTraversable(false);
-        uemailTxt.setFocusTraversable(false);
-        upasswordTxt.setFocusTraversable(false);
-        utelefonTxt.setFocusTraversable(false);
+        
     }
 
 }

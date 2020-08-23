@@ -1,8 +1,10 @@
 package imenik.model;
 
+import imenik.controller.SignUpController;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -82,7 +84,14 @@ public class UsersModel {
             upit.executeUpdate();
         } catch (SQLException ex) {
             System.out.println("Greška prilikom registracije korisnika: " + ex.getMessage());
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Upozorenje");
+            alert.setHeaderText("Greška prilikom registracije korisnika");
+            alert.setContentText("Email adresa se već koristi!");
+            alert.showAndWait();
+
         }
+    
     }
 
     public static boolean logiraj(String uemail, String upassword){

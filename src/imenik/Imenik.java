@@ -17,6 +17,9 @@ public class Imenik extends Application {
         primaryStage.setTitle("Prijavi se");
         primaryStage.setScene(scene);
 
+        primaryStage.setResizable(false);
+
+
         primaryStage.show();
 
     }

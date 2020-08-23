@@ -21,6 +21,7 @@ import java.net.URL;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -90,6 +91,7 @@ public class ContactsController extends LoginController implements Initializable
             Stage stage = new Stage();
             stage.setTitle("Dodaj kontakt");
             stage.setScene(new Scene(root, 503, 311));
+            stage.setResizable(false);
             stage.show();
             
         } catch (IOException e) {
@@ -114,10 +116,20 @@ public class ContactsController extends LoginController implements Initializable
             editContactController.setuEmailTxtFld(this.odabraniKontakt.getC_email());
             editContactController.setuBrojTxtFld(this.odabraniKontakt.getC_telefon());
             editContactController.setuAdresaTxtFld(this.odabraniKontakt.getC_adresa());
+            stage.setResizable(false);
             stage.show();
 
         } catch (IOException e) {
             e.printStackTrace();
+        }
+        catch(NullPointerException e)
+        {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Upozorenje");
+            alert.setHeaderText("Greška prilikom uređivanja kontakta");
+            alert.setContentText("Niste odabrali kontakt kojeg želite urediti!");
+            alert.showAndWait();
+
         }
 
     }
@@ -134,38 +146,41 @@ public class ContactsController extends LoginController implements Initializable
 
         FilteredList<ContactsModel> filteredData = new FilteredList<>(data, b->true);
 
-        // 2. Set the filter Predicate whenever the filter changes.
+        // 2. Podesiti filterField kada god se filter promijeni
         fiterField.textProperty().addListener((observable, oldValue, newValue) -> {
             filteredData.setPredicate(contacts -> {
-                // If filter text is empty, display all persons.
+                // ako je filter text prazan, prikazi sve kontakte
 
                 if (newValue == null || newValue.isEmpty()) {
                     return true;
                 }
 
-                // Compare first name and last name of every person with filter text.
+                // Usporedi ime, prezime, email, adresu, broj telefona svakog kontakta sa filter textom
                 String lowerCaseFilter = newValue.toLowerCase();
 
                 if (contacts.getC_ime().toLowerCase().indexOf(lowerCaseFilter) != -1 ) {
-                    return true; // Filter matches first name.
+                    return true; // Filter se podudara sa imenom kontakta
                 } else if (contacts.getC_prezime().toLowerCase().indexOf(lowerCaseFilter) != -1) {
-                    return true; // Filter matches last name.
+                    return true; // Filter se podudara sa prezimenom kontakta
                 }
                 else if (contacts.getC_email().toLowerCase().indexOf(lowerCaseFilter) != -1)
-                    return true;
+                    return true; // Filter se podudara sa emailom kontakta
+                else if (contacts.getC_adresa().toLowerCase().indexOf(lowerCaseFilter) != -1)
+                    return true; // Filter se podudara sa adresom kontakta
+                else if (contacts.getC_telefon().toLowerCase().indexOf(lowerCaseFilter) != -1)
+                    return true; // Filter se podudara sa brojem telefona kontakta
                 else
-                    return false; // Does not match.
+                    return false; // Filter se ne podudara
             });
         });
 
-        // 3. Wrap the FilteredList in a SortedList.
+        // 3. U SortedList pohraniti sve iz FiltredList (kontakte koji se podudaraju za trazenim)
         SortedList<ContactsModel> sortedData = new SortedList<>(filteredData);
 
-        // 4. Bind the SortedList comparator to the TableView comparator.
-        // 	  Otherwise, sorting the TableView would have no effect.
+        // 4. Usporedi SortedData sa podacima iz TableView
         sortedData.comparatorProperty().bind(kontaktiTbl.comparatorProperty());
 
-        // 5. Add sorted (and filtered) data to the table.
+        // 5. Dodati sve sortirane podatke u tablicu
         kontaktiTbl.setItems(sortedData);
     }
 
@@ -177,6 +192,7 @@ public class ContactsController extends LoginController implements Initializable
             Stage stage = new Stage();
             stage.setTitle("Prijavi se");
             stage.setScene(new Scene(root, 500, 350));
+            stage.setResizable(false);
             stage.show();
             odjavaBtn.getScene().getWindow().hide();
             System.out.println("Uspješno ste se odjavili!");
@@ -197,14 +213,42 @@ public class ContactsController extends LoginController implements Initializable
     @FXML
     public void izbrisiKontakt(Event e){
         if(this.odabraniKontakt != null){
-            this.odabraniKontakt.brisi();
-            ObservableList<ContactsModel> data = ContactsModel.listaKontakata(user_id);
-            this.kontaktiTbl.setItems(data);
-            System.out.println("Kontakt uspješno izbrisan.");
+
+            String ime = this.odabraniKontakt.getC_ime();
+            String prezime = this.odabraniKontakt.getC_prezime();
+
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Upozorenje");
+            alert.setHeaderText("Jeste li sigurni da želite izbrisati kontatk?");
+            alert.setContentText("Odabrani kontakt je: " + ime + " " + prezime);
+            ((Button) alert.getDialogPane().lookupButton(ButtonType.OK)).setText("U redu");
+            ((Button) alert.getDialogPane().lookupButton(ButtonType.CANCEL)).setText("Prekini");
+
+            Optional<ButtonType> result = alert.showAndWait();
+            if (result.get() == ButtonType.OK){
+                // ... korisnik odabrao U redu
+                this.odabraniKontakt.brisi();
+                ObservableList<ContactsModel> data = ContactsModel.listaKontakata(user_id);
+                this.kontaktiTbl.setItems(data);
+
+            } else {
+                // ... korisnik odabrao Prekini
+            }
+
+        }
+        else{
+
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Upozorenje");
+            alert.setHeaderText("Greška prilikom brisanja kontakta");
+            alert.setContentText("Niste odabrali kontakt kojeg želite izbrisati!");
+            alert.showAndWait();
+            
         }
 
     }
 
+    
     
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -221,45 +265,47 @@ public class ContactsController extends LoginController implements Initializable
         kontaktiTbl.setItems(data);
 
         FilteredList<ContactsModel> filteredData = new FilteredList<>(data, b->true);
-
-        // 2. Set the filter Predicate whenever the filter changes.
+        
+        // 2. Podesiti filterField kada god se filter promijeni
         fiterField.textProperty().addListener((observable, oldValue, newValue) -> {
             filteredData.setPredicate(contacts -> {
-                // If filter text is empty, display all persons.
+                // ako je filter text prazan, prikazi sve kontakte
 
                 if (newValue == null || newValue.isEmpty()) {
                     return true;
                 }
-
-                // Compare first name and last name of every person with filter text.
+                
+                // Usporedi ime i prezime svakog kontakta sa filter textom
                 String lowerCaseFilter = newValue.toLowerCase();
 
                 if (contacts.getC_ime().toLowerCase().indexOf(lowerCaseFilter) != -1 ) {
-                    return true; // Filter matches first name.
+                    return true; // Filter se podudara sa imenom kontakta
                 } else if (contacts.getC_prezime().toLowerCase().indexOf(lowerCaseFilter) != -1) {
-                    return true; // Filter matches last name.
+                    return true; // Filter se podudara sa prezimenom kontakta
                 }
 
                 else if (contacts.getC_email().toLowerCase().indexOf(lowerCaseFilter) != -1)
-                    return true;
+                    return true; // Filter se podudara sa emailom kontakta
 
                 else if (contacts.getC_adresa().toLowerCase().indexOf(lowerCaseFilter) != -1)
-                    return true;
+                    return true; // Filter se podudara sa adresom kontakta
                 else if (contacts.getC_telefon().toLowerCase().indexOf(lowerCaseFilter) != -1)
-                    return true;
-                else
-                    return false; // Does not match.
+                    return true; // Filter se podudara sa brojem telefona kontakta
+                else{
+                    
+                    return false; // Filter se ne podudara
+                     
+                }
             });
         });
         
-        // 3. Wrap the FilteredList in a SortedList.
+        // 3. U SortedList pohraniti sve iz FiltredList (kontakte koji se podudaraju za trazenim)
         SortedList<ContactsModel> sortedData = new SortedList<>(filteredData);
 
-        // 4. Bind the SortedList comparator to the TableView comparator.
-        // 	  Otherwise, sorting the TableView would have no effect.
+        // 4. Usporedi SortedData sa podacima iz TableView
         sortedData.comparatorProperty().bind(kontaktiTbl.comparatorProperty());
 
-        // 5. Add sorted (and filtered) data to the table.
+        // 5. Dodati sve sortirane podatke u tablicu
         kontaktiTbl.setItems(sortedData);
         
 
