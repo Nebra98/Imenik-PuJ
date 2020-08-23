@@ -2,7 +2,9 @@
 
 ### Imenik aplikacija izrađena pomoću JavaFX frameworka
 
-1. Što je potrebno: 
+###### Kratke upute:
+
+1. 
     - instaliran lokalni server npr. xampp
     - instaliran phpadminpanel (mysql)
     
