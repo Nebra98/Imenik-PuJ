@@ -20,3 +20,20 @@
    ```
 
 8. Pokrenuti aplikaciju
+
+
+## Slike sučelja aplikacije aplikacije <h2>
+
+![GitHub Logo](/screenshots/prijava.PNG)
+
+![GitHub Logo](/screenshots/registracija.PNG)
+
+![GitHub Logo](/screenshots/lista_kontakata.PNG)
+
+![GitHub Logo](/screenshots/dodaj_kontakt.PNG)
+
+![GitHub Logo](/screenshots/dialog.PNG)
+
+![GitHub Logo](/screenshots/dialog2.PNG)
+
+![GitHub Logo](/screenshots/dialog3.PNG)
