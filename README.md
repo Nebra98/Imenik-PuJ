@@ -1,3 +1,7 @@
+## Programiranje u Javi
+
+### Imenik aplikacija izrađena pomoću JavaFX frameworka
+
 1. Što je potrebno: 
     - instaliran lokalni server npr. xampp
     - instaliran phpadminpanel (mysql)
@@ -22,7 +26,7 @@
 8. Pokrenuti aplikaciju
 
 
-## Slike sučelja aplikacije aplikacije <h2>
+## Slike sučelja aplikacije aplikacije
 
 ![GitHub Logo](/screenshots/prijava.PNG)
 
