@@ -32,7 +32,7 @@
 8. Pokrenuti aplikaciju
 
 
-## Slike sučelja aplikacije aplikacije
+## Slike sučelja aplikacije
 
 ![GitHub Logo](/screenshots/prijava.PNG)
 
