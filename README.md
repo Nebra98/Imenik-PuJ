@@ -2,6 +2,16 @@
 
 ### Imenik aplikacija izrađena pomoću JavaFX frameworka
 
+Aplikacija omogućava prijavu i registraciju korisnika kroz jednostavno korisničko sučelje, te pohranu kontakata prijavljenog korisnika.
+Prijavljeni korisnik može dodati kontakt, urediti kontakt, izbrisati kontakt te pretražiti kontakt na osnovu bilo kojeg parametra. 
+Sam rad unutar aplikacije popraćen je dialoškim okvirima za određenu radnju.
+
+Na projektu su radili: Hrvoje Ramljak, Luka Pervan, Branimir Bulić
+
+Dolje ispod se nalaze upute za instalaciju aplikacije, te snimke zaslona korisničkog sučelja.
+
+
+
 ###### Kratke upute:
 
 1. 
